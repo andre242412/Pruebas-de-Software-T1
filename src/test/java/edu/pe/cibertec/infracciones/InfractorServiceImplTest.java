@@ -36,8 +36,10 @@ public class InfractorServiceImplTest {
     }
 
 
+
+
     @Test
-    void calcularDeuda_debeSumarCorrectamente() {
+    void calcularDeuda_suma() {
 
         Long infractorId = 1L;
 
@@ -62,9 +64,8 @@ public class InfractorServiceImplTest {
 
 
 
-
     @Test
-    void desasignarVehiculo_sinMultasPendientes_debeFuncionar() {
+    void desasignarVehiculo_sinMultas() {
 
         Long infractorId = 1L;
         Long vehiculoId = 1L;
@@ -94,8 +95,9 @@ public class InfractorServiceImplTest {
 
 
 
+
     @Test
-    void transferirMulta_debeTransferirCorrectamente() {
+    void transferirMulta_correcto() {
 
         Long multaId = 1L;
         Long nuevoInfractorId = 2L;
@@ -126,9 +128,8 @@ public class InfractorServiceImplTest {
 
 
 
-
     @Test
-    void transferirMulta_infractorBloqueado_noDebeGuardar() {
+    void transferirMulta_bloqueado() {
 
         Long multaId = 1L;
         Long nuevoInfractorId = 2L;
@@ -156,5 +157,10 @@ public class InfractorServiceImplTest {
         });
 
         verify(multaRepository, never()).save(any());
+
+
     }
+
+
+
 }
