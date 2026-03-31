@@ -88,10 +88,10 @@ public class InfractorServiceImpl implements IInfractorService {
         Vehiculo vehiculo = vehiculoRepository.findById(vehiculoId)
                 .orElseThrow(() -> new VehiculoNotFoundException(vehiculoId));
 
-        // Buscar multas del infractor
+
         var multas = multaRepository.findByInfractorId(infractorId);
 
-        // Validar si hay multas pendientes con ese vehículo
+
         for (var m : multas) {
             if (m.getVehiculo().getId().equals(vehiculoId)
                     && m.getEstado().name().equals("PENDIENTE")) {
@@ -99,7 +99,7 @@ public class InfractorServiceImpl implements IInfractorService {
             }
         }
 
-        // Remover vehículo
+
         infractor.getVehiculos().remove(vehiculo);
 
         infractorRepository.save(infractor);
@@ -115,17 +115,17 @@ public class InfractorServiceImpl implements IInfractorService {
         var nuevoInfractor = infractorRepository.findById(nuevoInfractorId)
                 .orElseThrow(() -> new InfractorNotFoundException(nuevoInfractorId));
 
-        // 1. Validar bloqueado
+
         if (nuevoInfractor.isBloqueado()) {
             throw new RuntimeException("El infractor está bloqueado");
         }
 
-        // 2. Validar estado de multa
+
         if (!multa.getEstado().name().equals("PENDIENTE")) {
             throw new RuntimeException("La multa no está pendiente");
         }
 
-        // 3. Validar que tenga el vehículo
+
         boolean tieneVehiculo = nuevoInfractor.getVehiculos()
                 .stream()
                 .anyMatch(v -> v.getId().equals(multa.getVehiculo().getId()));
@@ -134,7 +134,7 @@ public class InfractorServiceImpl implements IInfractorService {
             throw new RuntimeException("El infractor no tiene ese vehículo");
         }
 
-        // Transferir
+
         multa.setInfractor(nuevoInfractor);
 
         multaRepository.save(multa);
