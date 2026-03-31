@@ -10,14 +10,13 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.mockito.ArgumentCaptor;
 
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-public class InfractorServiceImplTest {
+public class T1Test {
 
     @Mock
     private InfractorRepository infractorRepository;
@@ -31,7 +30,7 @@ public class InfractorServiceImplTest {
     @InjectMocks
     private InfractorServiceImpl infractorService;
 
-    public InfractorServiceImplTest() {
+    public T1Test() {
         MockitoAnnotations.openMocks(this);
     }
 
